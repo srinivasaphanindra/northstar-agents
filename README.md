@@ -1,8 +1,11 @@
 # Northstar Agents landing
 Public static site for GitHub Pages.
-- `index.html` — **live** animated v2 (constellation pod, scroll reveal, navy/gold)
-- `index-astera-exp.html` — **experiment** Astera-inspired spiral particles + scroll stages (noindex)
-- `index-v1-static.html` — prior static version (preserved)
-Offer+prices Product A locked 2026-10-04/05.
+
+- `index.html` — **live** animated v2 (primary offer)
+- `index-photo-exp.html` — **experiment** dark photo-led scroll (founder avatar + live screenshots + cinematic stills)
+- `index-astera-exp.html` — redirects to photo experiment (old particles retired)
+- `index-v1-static.html` — prior static version
+- `assets/` — images for experiments
+
 Live: https://srinivasaphanindra.github.io/northstar-agents/
-Experiment: https://srinivasaphanindra.github.io/northstar-agents/index-astera-exp.html
+Photo exp: https://srinivasaphanindra.github.io/northstar-agents/index-photo-exp.html

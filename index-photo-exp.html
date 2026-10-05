@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Northstar Agents — AI workforce (photo experiment)</title>
+<meta name="description" content="Dark, image-led Northstar experiment. Real founder photo, cinematic brand stills, live product screenshots. Product A prices unchanged."/>
+<meta name="robots" content="noindex"/>
+<meta name="theme-color" content="#08090a"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#08090a;
+  --panel:#0f1011;
+  --text:#f7f8f8;
+  --sec:#d0d6e0;
+  --mut:#8a8f98;
+  --dim:#62666d;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.05);
+  --gold:#F5B700;
+  --gold2:#ffd666;
+  --navy:#0B1F3A;
+  --ok:#10b981;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-feature-settings:"cv01","ss03";
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,9,10,.72);
+  backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom:1px solid var(--line2);
+}
+.nav-in{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:14px 0;width:min(1120px,100% - 40px);margin-inline:auto;
+}
+.brand{
+  display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;font-weight:600;font-size:14px;color:var(--text);
+}
+.brand img{
+  width:28px;height:28px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line);box-shadow:0 0 0 2px rgba(245,183,0,.15);
+}
+.brand b{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-links a{
+  text-decoration:none;color:var(--sec);font-size:13px;font-weight:500;
+  padding:8px 11px;border-radius:6px;
+}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.nav-links .cta{
+  background:var(--gold);color:var(--navy);font-weight:700;
+  padding:9px 14px;border-radius:6px;margin-left:6px;
+}
+.badge-exp{
+  font-size:11px;font-weight:600;color:var(--mut);
+  border:1px solid var(--line);padding:4px 8px;border-radius:999px;
+}
+.hero{
+  position:relative;min-height:min(92vh,900px);
+  display:grid;align-items:end;
+  padding:120px 0 72px;overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 40%;
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(8,9,10,.35) 0%, rgba(8,9,10,.55) 40%, rgba(8,9,10,.92) 78%, var(--bg) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 30%, transparent 0%, rgba(8,9,10,.5) 100%);
+}
+.hero-in{position:relative;z-index:2;width:min(1120px,100% - 40px);margin-inline:auto}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:18px;
+}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+.hero h1{
+  margin:0 0 18px;
+  font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(2.6rem,6.2vw,4.5rem);line-height:1.02;letter-spacing:-.03em;
+  max-width:16ch;text-wrap:balance;color:var(--text);
+}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.lead{margin:0;max-width:34rem;font-size:18px;line-height:1.6;color:var(--sec)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:0 16px;border-radius:6px;text-decoration:none;
+  font-size:14px;font-weight:600;transition:transform .2s var(--ease), background .2s;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-ghost{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.06)}
+.proof{
+  margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;
+  color:var(--mut);font-size:13px;
+}
+.proof a{color:var(--sec);text-decoration:none;font-weight:500}
+.proof a:hover{color:var(--gold2)}
+.founder-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 12px 6px 6px;border-radius:999px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+}
+.founder-chip img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.founder-chip span{font-size:12px;color:var(--sec)}
+.founder-chip strong{color:var(--text);font-weight:600}
+section.block{padding:88px 0;border-top:1px solid var(--line2)}
+.section-h{max-width:40rem;margin-bottom:36px}
+.section-h .eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:0 0 10px;
+}
+.section-h h2{
+  margin:0 0 12px;
+  font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(1.9rem,3.5vw,2.75rem);letter-spacing:-.02em;line-height:1.1;
+}
+.section-h p{margin:0;color:var(--mut);font-size:16px;line-height:1.6}
+.frame{
+  position:relative;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);background:var(--panel);
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.frame img{width:100%;height:auto;display:block}
+.frame .cap{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 14px;border-top:1px solid var(--line2);
+  background:rgba(15,16,17,.9);font-size:12px;color:var(--mut);
+}
+.frame .cap b{color:var(--sec);font-weight:600}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;gap:24px}
+  .split .media{order:-1}
+}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fcard{
+  background:rgba(255,255,255,.02);border:1px solid var(--line);
+  border-radius:12px;padding:18px 16px;min-height:120px;
+}
+.fcard h3{margin:0 0 8px;font-size:15px;font-weight:600}
+.fcard p{margin:0;font-size:14px;color:var(--mut);line-height:1.5}
+.gallery{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+.gallery .tall{grid-row:span 2}
+@media (max-width:800px){
+  .gallery{grid-template-columns:1fr}
+  .gallery .tall{grid-row:auto}
+}
+.gitem{
+  position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+  background:#000;min-height:200px;
+}
+.gitem img{width:100%;height:100%;object-fit:cover;min-height:220px}
+.gitem.tall img{min-height:460px}
+.gitem .label{
+  position:absolute;left:12px;bottom:12px;right:12px;
+  padding:10px 12px;border-radius:8px;
+  background:rgba(8,9,10,.72);backdrop-filter:blur(10px);
+  border:1px solid var(--line);font-size:12px;color:var(--sec);
+}
+.gitem .label b{display:block;color:var(--text);font-size:13px;margin-bottom:2px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:980px){.plans{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.plans{grid-template-columns:1fr}}
+.plan{
+  background:rgba(255,255,255,.02);border:1px solid var(--line);
+  border-radius:12px;padding:20px 16px;display:flex;flex-direction:column;gap:6px;
+}
+.plan.hi{
+  border-color:rgba(245,183,0,.4);
+  background:linear-gradient(180deg,rgba(245,183,0,.08),rgba(255,255,255,.02));
+}
+.plan h3{margin:0;font-size:14px;font-weight:600}
+.price{font-size:28px;font-weight:700;letter-spacing:-.03em;margin:6px 0 2px}
+.price small{font-size:13px;font-weight:500;color:var(--mut)}
+.plan .fine{font-size:12px;color:var(--dim);margin:0}
+.plan > p{font-size:13px;color:var(--mut);margin:8px 0}
+.plan ul{margin:0;padding-left:1.05rem;color:var(--mut);font-size:13px}
+.plan li{margin:5px 0}
+.note{margin-top:18px;font-size:13px;color:var(--mut)}
+.note strong{color:var(--sec)}
+.steps{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.steps li{
+  display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;
+  padding:16px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+}
+.steps .n{
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;
+}
+.steps strong{color:var(--text);font-weight:600}
+.steps div{color:var(--mut);font-size:14px}
+.proof-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:800px){.proof-strip{grid-template-columns:1fr 1fr}}
+.plink{
+  display:flex;flex-direction:column;gap:8px;text-decoration:none;
+  padding:14px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.02);min-height:96px;
+}
+.plink:hover{border-color:rgba(245,183,0,.35);background:rgba(255,255,255,.04)}
+.plink b{font-size:14px;color:var(--text)}
+.plink span{font-size:12px;color:var(--mut)}
+.final{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line);min-height:320px;display:grid;align-items:end;
+}
+.final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.final::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,9,10,.2),rgba(8,9,10,.88));
+}
+.final-in{position:relative;z-index:2;padding:36px 28px}
+.final-in h2{
+  margin:0 0 10px;font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.02em;
+}
+.final-in p{margin:0 0 18px;color:var(--sec);max-width:34rem}
+footer{padding:28px 0 60px;border-top:1px solid var(--line2);color:var(--dim);font-size:12px}
+footer a{color:var(--mut)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <img src="assets/founder.png" width="28" height="28" alt=""/>
+      Northstar <b>Agents</b>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <span class="badge-exp">Photo experiment</span>
+      <a href="#work">How it looks</a>
+      <a href="#pod">The pod</a>
+      <a href="#plans">Plans</a>
+      <a class="cta" href="https://x.com/phanindranow">DM on X</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="assets/hero-starfield.png" alt="" width="1600" height="900" fetchpriority="high"/>
+    </div>
+    <div class="hero-in reveal in">
+      <div class="kicker"><i></i> AI workforce · always on</div>
+      <h1>A digital team that works your social while <em>you</em> run the business.</h1>
+      <p class="lead">Northstar is a pod of AI agents that write in your voice, show up every day, talk to people, and move pipeline — steered by you in plain language. Not a scheduler. Not a 10-person agency invoice.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://x.com/phanindranow">Start with a DM on X</a>
+        <a class="btn btn-ghost" href="https://www.facebook.com/malladi.phanindra.52/">Message on Facebook</a>
+        <a class="btn btn-ghost" href="./">Open live offer page</a>
+      </div>
+      <div class="proof">
+        <div class="founder-chip">
+          <img src="assets/founder.png" alt="Phanindra Malladi"/>
+          <span><strong>Phanindra Malladi</strong> · client zero</span>
+        </div>
+        <span>Proof: <a href="https://x.com/phanindranow">X</a> · <a href="https://www.facebook.com/malladi.phanindra.52/">Facebook</a> · <a href="https://www.linkedin.com/in/phanindra-malladi-914b50440/">LinkedIn</a> · <a href="https://www.youtube.com/@AIClipsguy">YouTube</a></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="section-h reveal">
+        <p class="eyebrow">Real surfaces</p>
+        <h2>Dark, scrollable, built from actual Northstar material.</h2>
+        <p>Founder photo from our live X avatar. Product chrome from the live landing. Cinematic brand stills for this experiment. No 1990s particle toys as the hero.</p>
+      </div>
+      <div class="gallery reveal">
+        <figure class="gitem tall">
+          <img src="assets/desk-ops.png" alt="Dark desk with ultrawide monitor running a navy-and-gold ops dashboard" loading="lazy"/>
+          <figcaption class="label"><b>Ops at night</b> The work happens while you build the business — command surface, not a caption spreadsheet.</figcaption>
+        </figure>
+        <figure class="gitem">
+          <img src="assets/shot-live-v2.png" alt="Screenshot of the live Northstar Agents landing page" loading="lazy"/>
+          <figcaption class="label"><b>Live site chrome</b> Real capture of the public Northstar landing.</figcaption>
+        </figure>
+        <figure class="gitem">
+          <img src="assets/workflow-ui.png" alt="Dark UI cards for draft, approve, publish workflow" loading="lazy"/>
+          <figcaption class="label"><b>Draft → your yes → live</b> Approvals stay on the consequential moves.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pod">
+    <div class="wrap split">
+      <div class="reveal">
+        <div class="section-h" style="margin-bottom:20px">
+          <p class="eyebrow">The pod</p>
+          <h2>Five agents. One north.</h2>
+          <p>Writer, Social, Analyst, Outreach, Chief — a living stack you steer from Slack. Caps are gravity. Logs are truth.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="fcard"><h3>Presence</h3><p>Daily drafts in your voice across X, Facebook, LinkedIn, YouTube when sessions are live.</p></article>
+          <article class="fcard"><h3>Engagement</h3><p>Human-style replies. Conversation is part of the job, not an afterthought.</p></article>
+          <article class="fcard"><h3>Pipeline</h3><p>Outreach drafts on higher plans. Every send waits for your yes.</p></article>
+          <article class="fcard"><h3>Truth</h3><p>Reviews from real action logs. No invented vanity metrics.</p></article>
+        </div>
+      </div>
+      <div class="media reveal">
+        <figure class="frame">
+          <img src="assets/pod-orbs.png" alt="Five soft light orbs around a brighter gold center on black" loading="lazy"/>
+          <div class="cap"><b>Pod metaphor</b><span>You hold the center</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="media reveal">
+        <figure class="frame">
+          <img src="assets/shot-youtube.png" alt="Screenshot of AI Clips Guy YouTube channel" loading="lazy"/>
+          <div class="cap"><b>YouTube · AI Clips Guy</b><span>Live proof surface</span></div>
+        </figure>
+      </div>
+      <div class="reveal">
+        <div class="section-h">
+          <p class="eyebrow">Client zero</p>
+          <h2>We run this on our own networks first.</h2>
+          <p>When you join, you get the same class of system: your voice, your caps, your approvals — on the networks that matter for your business.</p>
+        </div>
+        <div class="proof-strip">
+          <a class="plink" href="https://x.com/phanindranow"><b>X</b><span>@phanindranow</span></a>
+          <a class="plink" href="https://www.facebook.com/malladi.phanindra.52/"><b>Facebook</b><span>Founder profile</span></a>
+          <a class="plink" href="https://www.linkedin.com/in/phanindra-malladi-914b50440/"><b>LinkedIn</b><span>Signed-in ops</span></a>
+          <a class="plink" href="https://www.youtube.com/@AIClipsguy"><b>YouTube</b><span>@AIClipsguy</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="plans">
+    <div class="wrap">
+      <div class="section-h reveal">
+        <p class="eyebrow">Product A</p>
+        <h2>Plans built for operators.</h2>
+        <p>You bring SuperGrok or X Premium+ with Grok Bot. We do not resell the model. Prices locked.</p>
+      </div>
+      <div class="plans reveal">
+        <article class="plan">
+          <h3>Launch</h3>
+          <div class="price">$249</div>
+          <p class="fine">One-time · India ref ₹14,999</p>
+          <p>Stand up the pod: voice, caps, Slack, first draft→approve→publish path.</p>
+          <ul>
+            <li>Agent environment ready</li>
+            <li>Brand voice + hard caps</li>
+            <li>Slack command channel</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <h3>Starter</h3>
+          <div class="price">$99<small>/mo</small></div>
+          <p class="fine">India ref ₹4,999/mo</p>
+          <p>Stay visible on 1–2 networks with approvals where it counts.</p>
+          <ul>
+            <li>Monitoring &amp; recovery</li>
+            <li>Approval-required publishing</li>
+            <li>Weekly pulse</li>
+          </ul>
+        </article>
+        <article class="plan hi">
+          <h3>Operator</h3>
+          <div class="price">$249<small>/mo</small></div>
+          <p class="fine">India ref ₹14,999/mo · most run here</p>
+          <p>Presence plus growth motion and outreach drafts on your green light.</p>
+          <ul>
+            <li>Scheduled creative briefs</li>
+            <li>Personal outreach drafts</li>
+            <li>Monthly strategy note</li>
+          </ul>
+        </article>
+        <article class="plan">
+          <h3>Command</h3>
+          <div class="price">$499<small>/mo</small></div>
+          <p class="fine">India ref ₹29,999/mo</p>
+          <p>Full pod leadership — multi-network, community caps, daily summary.</p>
+          <ul>
+            <li>Multi-platform within caps</li>
+            <li>Group moderation limits</li>
+            <li>Daily executive-style summary</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note reveal"><strong>Pilot $99 / 14 days</strong> (Launch lite + Starter pace). Launch waived on 3-month prepay of Operator or Command. Starter includes first-month money-back.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="reveal">
+        <div class="section-h">
+          <p class="eyebrow">Onboarding</p>
+          <h2>Four clear beats.</h2>
+        </div>
+        <ol class="steps">
+          <li><span class="n">1</span><div><strong>Align.</strong> Voice, audience, platforms, what must never ship without you.</div></li>
+          <li><span class="n">2</span><div><strong>Ignite.</strong> Prove the loop: draft → your yes → live.</div></li>
+          <li><span class="n">3</span><div><strong>Compound.</strong> Daily motion, outreach when ready, tighter briefs as we learn you.</div></li>
+          <li><span class="n">4</span><div><strong>Evolve.</strong> New power lands in your pod; price ladder stays honest.</div></li>
+        </ol>
+      </div>
+      <div class="media reveal">
+        <figure class="frame">
+          <img src="assets/north-star.png" alt="Close-up golden north star against deep black" loading="lazy"/>
+          <div class="cap"><b>North star</b><span>You steer · agents execute</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="final reveal">
+        <img src="assets/hero-starfield.png" alt="" loading="lazy"/>
+        <div class="final-in">
+          <h2>Ready to lead a pod?</h2>
+          <p>Pick Launch, Starter, Operator, Command, or the 14-day pilot. Say <strong style="color:#fff">agents</strong> on X or Facebook.</p>
+          <div class="cta-row" style="margin:0">
+            <a class="btn btn-primary" href="https://x.com/phanindranow">DM @phanindranow</a>
+            <a class="btn btn-ghost" href="https://www.facebook.com/malladi.phanindra.52/">Facebook</a>
+            <a class="btn btn-ghost" href="./">Live offer (v2)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Northstar Agents · Phanindra Malladi · Photo-led experiment (not the primary live offer page).<br/>
+    Assets: founder avatar from live X · screenshots of live landing + YouTube · cinematic stills generated for this build.<br/>
+    <a href="./">Live v2</a> · <a href="index-v1-static.html">v1 static</a> · <a href="index-astera-exp.html">old particle exp</a> · Product A prices locked.
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nodes = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { nodes.forEach(function(n){ n.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -10% 0px', threshold:0.12 });
+  nodes.forEach(function(n){ io.observe(n); });
+})();
+</script>
+</body>
+</html>
