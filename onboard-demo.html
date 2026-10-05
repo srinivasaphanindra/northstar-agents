@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Northstar — Client onboarding (demo)</title>
+<meta name="description" content="Demo client onboarding dashboard for Northstar Agents Product A. Not a live client portal."/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="theme-color" content="#0B1F3A"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0B1F3A; --navy-2:#122a4a; --navy-3:#1a3a62;
+  --gold:#F5B700; --ink:#0c1222; --text:#e8eef7; --muted:#9aa8bc;
+  --card:#0f2744; --line:rgba(255,255,255,.08); --ok:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"DM Sans",system-ui,sans-serif;background:var(--navy);color:var(--text);line-height:1.5;min-height:100vh}
+a{color:var(--gold)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+.top{
+  position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);
+  background:rgba(11,31,58,.88);border-bottom:1px solid var(--line);
+}
+.top-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:#fff}
+.mark{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 8%,var(--gold) 9% 42%,transparent 43%),conic-gradient(from 210deg,var(--gold),#fff3,var(--gold));box-shadow:0 0 0 2px rgba(245,183,0,.25)}
+.badge{font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(245,183,0,.15);color:var(--gold);border:1px solid rgba(245,183,0,.35)}
+.pill{font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(251,191,36,.12);color:var(--warn);border:1px solid rgba(251,191,36,.35)}
+.pill.ok{background:rgba(52,211,153,.12);color:var(--ok);border-color:rgba(52,211,153,.35)}
+.demo-banner{background:#1a1020;border-bottom:1px solid rgba(245,183,0,.25);color:var(--muted);font-size:.85rem;padding:8px 18px;text-align:center}
+.demo-banner strong{color:var(--gold)}
+.hero{padding:28px 0 8px}
+.hero h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(1.8rem,4vw,2.4rem);margin:0 0 8px;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--muted);max-width:52ch}
+.progress-block{margin:22px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.progress-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.88rem;margin-bottom:10px}
+.bar{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;width:50%;background:linear-gradient(90deg,var(--gold),#ffd666);border-radius:999px;transition:width .4s var(--ease)}
+.primary-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+.primary-row .next{font-size:.95rem}
+.primary-row .next strong{color:#fff}
+.btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;border-radius:999px;padding:12px 18px;background:var(--gold);color:var(--navy);text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(245,183,0,.22)}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none;font-weight:600}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:18px;padding:18px 0 48px}
+@media (max-width:820px){.layout{grid-template-columns:1fr}.nav-side{display:flex;gap:8px;overflow:auto;padding-bottom:4px}.nav-side button{white-space:nowrap}}
+.nav-side button{
+  width:100%;text-align:left;background:transparent;border:1px solid transparent;color:var(--muted);
+  font:inherit;font-weight:600;padding:10px 12px;border-radius:12px;cursor:pointer;
+}
+.nav-side button:hover{background:rgba(255,255,255,.04);color:#fff}
+.nav-side button.active{background:rgba(245,183,0,.1);border-color:rgba(245,183,0,.35);color:#fff}
+.nav-side .count{float:right;font-size:.75rem;background:rgba(245,183,0,.2);color:var(--gold);padding:2px 7px;border-radius:999px}
+.panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.panel.active{display:block}
+.panel h2{margin:0 0 6px;font-size:1.15rem}
+.panel .sub{margin:0 0 16px;color:var(--muted);font-size:.9rem}
+.checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.checklist li{
+  display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:start;
+  padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.15);
+}
+.checklist li.done{opacity:.72}
+.checklist li.current{border-color:rgba(245,183,0,.45);box-shadow:0 0 0 1px rgba(245,183,0,.15)}
+.check{
+  width:28px;height:28px;border-radius:8px;border:1px solid var(--line);
+  display:grid;place-items:center;font-size:.85rem;background:rgba(255,255,255,.04);cursor:pointer;user-select:none
+}
+.checklist li.done .check{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.4);color:var(--ok)}
+.step-title{font-weight:700;color:#fff;font-size:.95rem}
+.step-meta{font-size:.8rem;color:var(--muted);margin-top:2px}
+.eta{font-size:.75rem;color:var(--muted);font-weight:600}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid-2{grid-template-columns:1fr}}
+label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+input,textarea,select{
+  width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;
+  color:#fff;font:inherit;padding:11px 12px;margin-bottom:12px
+}
+textarea{min-height:90px;resize:vertical}
+.card-row{display:grid;gap:10px}
+.draft{
+  border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(0,0,0,.18)
+}
+.draft h3{margin:0 0 6px;font-size:.95rem}
+.draft p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap}
+.timeline{border-left:2px solid rgba(245,183,0,.35);margin:8px 0 0 8px;padding-left:16px}
+.timeline .ev{margin-bottom:14px;position:relative}
+.timeline .ev::before{
+  content:"";position:absolute;left:-21px;top:4px;width:10px;height:10px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 3px rgba(245,183,0,.2)
+}
+.timeline .ev.muted::before{background:var(--muted)}
+.timeline strong{display:block;color:#fff;font-size:.9rem}
+.timeline span{font-size:.8rem;color:var(--muted)}
+.note{font-size:.82rem;color:var(--muted);border:1px dashed rgba(255,255,255,.14);border-radius:12px;padding:12px;margin-top:14px}
+.footer{padding:10px 0 28px;color:var(--muted);font-size:.78rem;text-align:center}
+.sticky-cta{
+  display:none;position:fixed;left:0;right:0;bottom:0;padding:12px 18px;
+  background:rgba(11,31,58,.94);border-top:1px solid var(--line);backdrop-filter:blur(10px)
+}
+@media (max-width:820px){.sticky-cta{display:block}.footer{padding-bottom:80px}}
+</style>
+</head>
+<body>
+<div class="demo-banner"><strong>DEMO</strong> — sample client “Acme Studio” · Starter plan · not connected to live pods · <a href="./index.html">Back to offer</a></div>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="./index.html"><span class="mark" aria-hidden="true"></span> Northstar <span style="color:var(--gold)">Agents</span></a>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="badge">Acme Studio</span>
+      <span class="badge">Starter $99/mo</span>
+      <span class="pill" id="statusPill">Waiting on you</span>
+      <a class="btn ghost" href="#" onclick="alert('Demo: opens client Slack #ns-acme');return false">Open Slack</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Your workspace setup</h1>
+    <p>One place to finish setup. Day-to-day command stays in Slack. No fake metrics — progress is real steps only.</p>
+    <div class="progress-block">
+      <div class="progress-meta">
+        <span id="stepLabel">Step 4 of 8 · Browser sign-in</span>
+        <span id="pctLabel">50%</span>
+      </div>
+      <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+      <div class="primary-row">
+        <div class="next">Next: <strong id="nextText">Complete guided browser sign-in for X</strong></div>
+        <button class="btn" type="button" id="primaryBtn">Start sign-in</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="nav-side" aria-label="Sections">
+      <button type="button" class="active" data-panel="overview">Overview</button>
+      <button type="button" data-panel="checklist">Checklist</button>
+      <button type="button" data-panel="intake">Intake</button>
+      <button type="button" data-panel="accounts">Accounts</button>
+      <button type="button" data-panel="drafts">Drafts <span class="count">2</span></button>
+      <button type="button" data-panel="plan">Plan &amp; billing</button>
+      <button type="button" data-panel="help">Help</button>
+    </nav>
+
+    <div>
+      <section class="panel active" id="panel-overview">
+        <h2>Overview</h2>
+        <p class="sub">Week-1 path for Starter: setup → drafts → approve → optional live caps.</p>
+        <div class="timeline">
+          <div class="ev"><strong>Payment logged</strong><span>Day 0 · Launch/Starter</span></div>
+          <div class="ev"><strong>Intake + handles saved</strong><span>Day 0 · you</span></div>
+          <div class="ev"><strong>Slack channel ready</strong><span>#ns-acme · commands pinned</span></div>
+          <div class="ev"><strong>Browser sign-in</strong><span>Now · you + Northstar operator</span></div>
+          <div class="ev muted"><strong>First drafts</strong><span>After accounts · approve in Slack or here</span></div>
+          <div class="ev muted"><strong>Weekly pulse</strong><span>From real logs only</span></div>
+        </div>
+        <p class="note">Activation moment: you approve the first on-brand draft. Live posting stays off until you and we unlock caps.</p>
+      </section>
+
+      <section class="panel" id="panel-checklist">
+        <h2>Setup checklist</h2>
+        <p class="sub">Tap a box to simulate progress (demo only).</p>
+        <ul class="checklist" id="checkList">
+          <li class="done" data-key="grok"><div class="check">✓</div><div><div class="step-title">Confirm SuperGrok / Premium+</div><div class="step-meta">You pay model bill · we don’t resell Grok</div></div><span class="eta">Done</span></li>
+          <li class="done" data-key="intake"><div class="check">✓</div><div><div class="step-title">Complete voice &amp; offer intake</div><div class="step-meta">ICP, words to use/avoid, CTA</div></div><span class="eta">Done</span></li>
+          <li class="done" data-key="handles"><div class="check">✓</div><div><div class="step-title">Add profile links</div><div class="step-meta">URLs only — never passwords</div></div><span class="eta">Done</span></li>
+          <li class="done" data-key="slack"><div class="check">✓</div><div><div class="step-title">Join private Slack</div><div class="step-meta">status · approve drafts · pause · weekly</div></div><span class="eta">Done</span></li>
+          <li class="current" data-key="signin"><div class="check">○</div><div><div class="step-title">Guided browser sign-in</div><div class="step-meta">X / Facebook / LinkedIn on operator session</div></div><span class="eta">~15 min</span></li>
+          <li data-key="drafts"><div class="check">○</div><div><div class="step-title">Approve first drafts</div><div class="step-meta">Nothing public until you say yes</div></div><span class="eta">~10 min</span></li>
+          <li data-key="live"><div class="check">○</div><div><div class="step-title">Optional: unlock live posting</div><div class="step-meta">Safe daily caps · our gate + yours</div></div><span class="eta">Later</span></li>
+          <li data-key="pulse"><div class="check">○</div><div><div class="step-title">First weekly pulse</div><div class="step-meta">Numbers only with source paths</div></div><span class="eta">Day 7</span></li>
+        </ul>
+      </section>
+
+      <section class="panel" id="panel-intake">
+        <h2>Intake</h2>
+        <p class="sub">Short form · progressive · saves to your pod (demo fields).</p>
+        <div class="grid-2">
+          <div><label>Brand name</label><input value="Acme Studio" /></div>
+          <div><label>Slug preference</label><input value="acme" /></div>
+        </div>
+        <label>Who you serve (one paragraph)</label>
+        <textarea>B2B founders who need steady LinkedIn + X presence without a full social hire.</textarea>
+        <label>One-line offer + allowed CTA</label>
+        <input value="Design systems that ship — DM “systems” on X" />
+        <label>Words to use / avoid</label>
+        <input value="Use: calm, craft, ship. Avoid: growth-hack, guaran teed leads" />
+        <label>Success in 14 days (qualitative OK)</label>
+        <input value="3 solid posts/week + weekly summary in Slack" />
+        <button class="btn" type="button" onclick="alert('Demo save — live system writes clients/<slug>/intake.md')">Save intake</button>
+      </section>
+
+      <section class="panel" id="panel-accounts">
+        <h2>Accounts</h2>
+        <p class="sub">Handles only. Sign-in status is mirrored from ops — bots never type passwords.</p>
+        <div class="grid-2">
+          <div><label>X / Twitter</label><input value="https://x.com/acme" /></div>
+          <div><label>LinkedIn</label><input value="https://linkedin.com/company/acme" /></div>
+          <div><label>Facebook</label><input value="https://facebook.com/acme" /></div>
+          <div><label>Week-1 mode</label>
+            <select><option>Draft-only (recommended)</option><option>Want live after first approve</option></select>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="draft"><strong style="color:var(--ok)">X</strong> — signed in (demo)<br/><span style="color:var(--muted);font-size:.85rem">Live posting: NO until unlock</span></div>
+          <div class="draft"><strong style="color:var(--warn)">LinkedIn</strong> — waiting sign-in<br/><span style="color:var(--muted);font-size:.85rem">Next checklist step</span></div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-drafts">
+        <h2>Drafts &amp; approvals</h2>
+        <p class="sub">Same truth as Slack. Approve here or with <code>approve drafts</code>.</p>
+        <div class="card-row">
+          <div class="draft">
+            <h3>X · “Why calm beats loud on LinkedIn”</h3>
+            <p>Hook + 4 lines in your voice. CTA: DM systems. No fake metrics.</p>
+            <div class="row-actions">
+              <button class="btn" type="button" onclick="this.textContent='Approved';this.style.opacity='.7'">Approve</button>
+              <button class="btn ghost" type="button">Request edit</button>
+            </div>
+          </div>
+          <div class="draft">
+            <h3>LinkedIn · “Ship the system, not the slide”</h3>
+            <p>Founder-first post · proof without vanity counts · soft CTA.</p>
+            <div class="row-actions">
+              <button class="btn" type="button">Approve</button>
+              <button class="btn ghost" type="button">Request edit</button>
+            </div>
+          </div>
+        </div>
+        <p class="note">Empty state when none: “Your first drafts land after sign-in — usually day 1–2.”</p>
+      </section>
+
+      <section class="panel" id="panel-plan">
+        <h2>Plan &amp; billing</h2>
+        <p class="sub">Locked Product A ladder. Upgrade anytime after pilot/setup.</p>
+        <div class="draft">
+          <h3>Current: Starter (A1) · $99/mo</h3>
+          <p>Always-on presence · 1–2 networks · approval-required posts · weekly pulse. Prerequisite: SuperGrok / Premium+ (you pay).</p>
+          <div class="row-actions">
+            <button class="btn ghost" type="button">See Operator $249</button>
+            <button class="btn ghost" type="button">See Command $499</button>
+          </div>
+        </div>
+        <p class="note">Gumroad receipt link appears when payout + publish are live. Manual invoice buyers see “Payment logged” instead.</p>
+      </section>
+
+      <section class="panel" id="panel-help">
+        <h2>Help</h2>
+        <p class="sub">Short honesty card — same as sales.</p>
+        <ul style="color:var(--muted);padding-left:18px">
+          <li>We never ask for social passwords in this portal.</li>
+          <li>Facebook composer automation can be intermittent — we don’t promise 100% FB autopost.</li>
+          <li>Caps are hard limits; we stop on warnings.</li>
+          <li>Command surface: Slack <strong style="color:#fff">status · approve drafts · pause · resume · weekly</strong></li>
+          <li>Human help: DM Phanindra / Northstar on the handles from your welcome pin.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<div class="footer wrap">Northstar Agents · onboarding demo · mirrors Product A buyer pack · no client data</div>
+<div class="sticky-cta"><button class="btn" style="width:100%;justify-content:center" type="button" id="stickyBtn">Start sign-in</button></div>
+
+<script>
+(function(){
+  const panels=[...document.querySelectorAll('.panel')];
+  const nav=[...document.querySelectorAll('.nav-side button')];
+  nav.forEach(btn=>btn.addEventListener('click',()=>{
+    nav.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    panels.forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  }));
+
+  const items=[...document.querySelectorAll('#checkList li')];
+  const bar=document.getElementById('barFill');
+  const stepLabel=document.getElementById('stepLabel');
+  const pctLabel=document.getElementById('pctLabel');
+  const nextText=document.getElementById('nextText');
+  const statusPill=document.getElementById('statusPill');
+  const keys=['grok','intake','handles','slack','signin','drafts','live','pulse'];
+  const titles={
+    grok:'Confirm SuperGrok / Premium+',
+    intake:'Complete voice & offer intake',
+    handles:'Add profile links',
+    slack:'Join private Slack',
+    signin:'Complete guided browser sign-in',
+    drafts:'Approve first drafts',
+    live:'Optional: unlock live posting',
+    pulse:'Read first weekly pulse'
+  };
+
+  function sync(){
+    const done=items.filter(li=>li.classList.contains('done')).length;
+    const total=items.length;
+    const pct=Math.round(done/total*100);
+    bar.style.width=pct+'%';
+    pctLabel.textContent=pct+'%';
+    const current=items.find(li=>!li.classList.contains('done'));
+    items.forEach(li=>li.classList.remove('current'));
+    if(current){
+      current.classList.add('current');
+      const idx=items.indexOf(current)+1;
+      stepLabel.textContent='Step '+idx+' of '+total+' · '+current.querySelector('.step-title').textContent;
+      nextText.textContent=titles[current.dataset.key]||current.querySelector('.step-title').textContent;
+      statusPill.textContent='Waiting on you';
+      statusPill.classList.remove('ok');
+    }else{
+      stepLabel.textContent='All steps complete';
+      nextText.textContent='Open Slack for daily command';
+      statusPill.textContent='Live setup';
+      statusPill.classList.add('ok');
+    }
+  }
+
+  items.forEach(li=>{
+    li.querySelector('.check').addEventListener('click',()=>{
+      li.classList.toggle('done');
+      const mark=li.querySelector('.check');
+      mark.textContent=li.classList.contains('done')?'✓':'○';
+      sync();
+    });
+  });
+
+  function primary(){
+    const current=items.find(li=>!li.classList.contains('done'));
+    if(!current){alert('Demo complete — steady state is Slack.');return}
+    if(current.dataset.key==='signin'){alert('Demo: opens guided sign-in slot / meet link');return}
+    current.querySelector('.check').click();
+  }
+  document.getElementById('primaryBtn').onclick=primary;
+  document.getElementById('stickyBtn').onclick=primary;
+  sync();
+})();
+</script>
+</body>
+</html>
